@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: 'Inter', sans-serif;
+  color: #f4f7f6;
+  background: #080b0e;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+html { scroll-behavior: smooth; }
+body { margin: 0; min-width: 320px; background: #080b0e; }
+* { box-sizing: border-box; }
+::selection { background: #7de7e1; color: #080b0e; }
+
+.font-display { font-family: 'Space Grotesk', sans-serif; }
+
+.hero-grid::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -5;
+  pointer-events: none;
+  opacity: .08;
+  background-image: linear-gradient(rgba(255,255,255,.18) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.18) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: linear-gradient(to bottom, black, transparent 86%);
+}
+
+.live-dot { animation: pulse-live 2.2s ease-in-out infinite; box-shadow: 0 0 0 rgba(125,231,225,0); }
+@keyframes pulse-live { 0%, 100% { opacity: .55; box-shadow: 0 0 0 0 rgba(125,231,225,.35); } 50% { opacity: 1; box-shadow: 0 0 0 5px rgba(125,231,225,0); } }
+
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1); }
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: .08s; }
+.reveal-delay-2 { transition-delay: .16s; }
+.reveal-delay-3 { transition-delay: .24s; }
+.reveal-delay-4 { transition-delay: .32s; }
+
+.ambient-orb { position: absolute; pointer-events: none; width: 480px; height: 480px; border-radius: 999px; filter: blur(80px); opacity: .11; background: #7de7e1; }
+.ambient-orb-right { right: -240px; top: 15%; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+
+@media (max-width: 640px) {
+  .hero-grid::after { background-size: 48px 48px; }
+}
